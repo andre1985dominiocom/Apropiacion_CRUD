@@ -1,7 +1,7 @@
 // Importar las dependencias necesarias para la aplicación
 import express from 'express';
 import postRoutes from './routes/routes.js';
-import { getPosts, getUser, getComments, createPosts, updatePosts, deletePosts } from './services/service';
+import { getPosts, getUser, getComments, createPosts, updatePosts, deletePosts } from './services/service.js';
 
 // Crear una instancia de la aplicación Express
 const app = express();

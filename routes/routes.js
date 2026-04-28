@@ -1,5 +1,6 @@
 // Importar las dependencias necesarias para definir las rutas de la aplicación
 import express  from "express";
+import cors from "cors";
 import controller from "../controllers/controller.js";
 
 // Crear una instancia del enrutador de Express para definir las rutas de la API
