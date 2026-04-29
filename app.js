@@ -1,10 +1,14 @@
 // Importar las dependencias necesarias para la aplicación
 import express from 'express';
+import cors from 'cors';
 import postRoutes from './routes/routes.js';
-import { getPosts, getUser, getComments, createPosts, updatePosts, deletePosts } from './services/service.js';
+// import { getPosts, getUser, getComments, createPosts, updatePosts, deletePosts } from './services/service.js';
 
 // Crear una instancia de la aplicación Express
 const app = express();
+app.use(cors({
+    origin: "*" // Permitir solicitudes desde cualquier origen (ajustar según sea necesario)
+})); // Habilitar CORS para permitir solicitudes desde el frontend
 app.use(express.json());
 app.use('/api', postRoutes);
 
@@ -17,5 +21,5 @@ app.use((err, req, res, next) => {
 // Iniciar el servidor en el puerto especificado
 const PORT = process.env.PORT || 3000; // Usar una variable de entorno para el puerto o el puerto 3000 por defecto
 app.listen(PORT, () => { // Callback para confirmar que el servidor está corriendo
-    console.log(`Servidor escuchando en el puerto ${PORT}`); // Mensaje de confirmación en la consola
+    console.log(`Servidor corriendo en el puerto ${PORT}`); // Mensaje de confirmación en la consola
 });

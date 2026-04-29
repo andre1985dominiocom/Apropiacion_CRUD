@@ -4,7 +4,7 @@ import axios from "axios";
 // Definir la URL base de la API externa para facilitar las solicitudes a los diferentes endpoints
 const BASE_URL = "https://jsonplaceholder.typicode.com/";
 
-// Funciones asíncronas para interactuar con la API externa y manejar las operaciones relacionadas 
+// Funciones asíncronas para interactuar con la API externa y manejar las operaciones relacionadas
 // con los posts, usuarios y comentarios
 export const getPosts = async () => {
     try {

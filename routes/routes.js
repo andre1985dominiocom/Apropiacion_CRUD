@@ -1,18 +1,47 @@
-// Importar las dependencias necesarias para definir las rutas de la aplicación
-import express  from "express";
-import cors from "cors";
-import controller from "../controllers/controller.js";
+// Importar las dependencias necesarias para la aplicación
+import express from 'express';
 
-// Crear una instancia del enrutador de Express para definir las rutas de la API
+// Crear una instancia del router de Express
 const router = express.Router();
 
-// Definir las rutas para manejar las solicitudes HTTP relacionadas con los posts, usuarios y comentarios
-router.get("/posts", controller.getPosts);
-router.get("/users/:id", controller.getUser);
-router.get("/posts/:postId/comments", controller.getComments);
-router.post("/posts", controller.createPosts);
-router.put("/posts/:id", controller.updatePosts);
-router.delete("/posts/:id", controller.deletePosts);
+// Almacenamiento local (simulando una base de datos)
+let tareas = [];
 
-// Exportar el enrutador para que pueda ser utilizado en otras partes de la aplicación
+// GET
+router.get('/posts', (req, res) => {
+    res.json(tareas);
+});
+
+// POST
+router.post('/posts', (req, res) => {
+    const nueva = {
+        id: tareas.length + 1,
+        ...req.body
+    };
+
+    tareas.push(nueva);
+    res.status(201).json(nueva);
+});
+
+// PUT
+router.put('/posts/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    tareas = tareas.map(t =>
+        t.id === id ? { ...t, ...req.body } : t
+    );
+
+    res.json({ mensaje: "Actualizado" });
+});
+
+// DELETE
+router.delete('/posts/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    tareas = tareas.filter(t => t.id !== id);
+
+    res.json({ mensaje: "Eliminado" });
+});
+
+// Exportar el router para ser utilizado en la aplicación principal
 export default router;
